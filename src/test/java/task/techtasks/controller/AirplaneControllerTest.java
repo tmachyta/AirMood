@@ -20,7 +20,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,14 +110,6 @@ class AirplaneControllerTest {
     }
 
     @Test
-    /*@Sql(
-            scripts = "classpath:database/aircompany/add-default-air-companies.sql",
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
-    )
-    @Sql(
-            scripts = "classpath:database/aircompany/delete-from-air-companies.sql",
-            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
-    )*/
     @Sql(
             scripts = "classpath:database/airplane/delete-test-airplane.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
@@ -164,7 +155,6 @@ class AirplaneControllerTest {
         EqualsBuilder.reflectionEquals(expected, actual, "id");
     }
 
-    @Disabled
     @Test
     @DisplayName("Get list of airplanes")
     void getAll_GivenAirPlanesInCatalog() throws Exception {
@@ -172,7 +162,7 @@ class AirplaneControllerTest {
                 DEFAULT_ID,
                 FIRST_NAME,
                 FIRST_NUMBER,
-                FIRST_AIR_COMPANY_ID,
+                SECOND_AIR_COMPANY_ID,
                 NUMBER_FLIGHTS,
                 FLIGHT_DISTANCE,
                 FUEL_CAPACITY,
@@ -205,10 +195,10 @@ class AirplaneControllerTest {
     }
 
     @Test
-    @Sql(
+    /*@Sql(
             scripts = "classpath:database/airplane/delete-test-airplane-without-company.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
-    )
+    )*/
     @DisplayName("Create a new airplane without company")
     void createAirplane_WithOut_Air_Company() throws Exception {
         CreateAirplaneWithOutAirCompanyRequest request = createAirplaneWithOutAirCompanyRequest(
@@ -291,7 +281,10 @@ class AirplaneControllerTest {
     }
 
     @Test
-    @Disabled
+    @Sql(
+            scripts = "classpath:database/airplane/add-default-airplanes.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+    )
     @DisplayName("move airplanes between companies by id")
     void moveAirplanesBetweenCompanies() throws Exception {
         AirplaneDto expected = createExpectedAirCompanyDto(

@@ -12,6 +12,8 @@ import task.techtasks.model.Flight;
 
 @Mapper(config = MapperConfig.class)
 public interface FlightMapper {
+    @Mapping(source = "airCompany.id", target = "airCompanyId")
+    @Mapping(source = "airplane.id", target = "airplaneId")
     FlightDto toDto(Flight flight);
 
     @Mapping(target = "id", ignore = true)
