@@ -1,0 +1,1 @@
+DELETE FROM air_companies

@@ -1,0 +1,1 @@
+DELETE FROM airplanes WHERE name = 'Plane1' AND factory_serial_number = '255NLA' AND air_company_id = 1 AND number_of_flights = 10 AND flight_distance = 1000 AND fuel_capacity = 150 AND type = 'CARGO' AND created_at = '2002-11-05'

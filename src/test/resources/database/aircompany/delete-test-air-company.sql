@@ -1,0 +1,1 @@
+DELETE FROM air_companies WHERE name = 'Company1' AND type = 'LUXURY' AND founded_at = '2002-11-05'
