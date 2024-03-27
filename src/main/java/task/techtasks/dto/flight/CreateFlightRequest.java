@@ -2,9 +2,11 @@ package task.techtasks.dto.flight;
 
 import java.time.LocalDateTime;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import task.techtasks.model.Flight.FlightStatus;
 
 @Data
+@Accessors(chain = true)
 public class CreateFlightRequest {
     private FlightStatus flightStatus;
     private Long airCompanyId;
