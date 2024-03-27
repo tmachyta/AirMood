@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  db:
+    platform: linux/arm64
+    image: mysql:latest
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
+    environment:
+      MYSQL_ROOT_USERNAME: $MYSQL_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+    healthcheck:
+      test: ["CMD-SHELL","mysqladmin ping -h localhost -u root --password=mt110711@ -P 3306"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  app:
+    depends_on:
+      - db
+    image: air-mood
+    restart: on-failure
+    build: .
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+      - $DEBUG_PORT:$DEBUG_PORT
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:$MYSQL_DOCKER_PORT/$MYSQL_DATABASE?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=$MYSQL_USER
+      - SPRING_DATASOURCE_PASSWORD=$MYSQL_PASSWORD
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
+      - server.servlet.context-path=/api
