@@ -40,6 +40,12 @@ To connect to your DB, you should replace PlaceHolders in .env
 - SPRING_DOCKER_PORT=YOUR_DOCKER_PORT -> replace with your docker port
 - DEBUG_PORT=5006
 
+### Docker:
+- First of all, open your terminal and write command mvn clean package
+- Then in terminal write docker-compose build
+- After that write in terminal docker-compose up
+- And project will start
+
 # Features 🤌:
 
 ## 🏢 Air Company  🏢
@@ -53,7 +59,7 @@ To connect to your DB, you should replace PlaceHolders in .env
 - Create a new airplane
 - Create a new airplane without adding air company
 - Update airplane by adding air company
-- Move airplane between companies
+- Move airplane by id between companies
 - Display all airplanes
 - Find airplane by id
 - Soft-Delete airplane by id
@@ -73,41 +79,31 @@ started and ended time is bigger than the estimated flight time.
 
 # Controllers 🕹
 
-## Auth
-- Post - /register
-- Post - /login
+## 🏢 Air Company 🏢
+- Post | create a new air company - /air-companies
+- Get | display all air companis - /air-companies
+- Get | get air company by id - /air-companies/{id}
+- Delete | soft-delete air company by id - /air-companies/{id}
+- Put | update air company by id - /air-companis/{id}
 
-## Car
-- Get | display all cars - /cars
-- Post | add car to repository - /cars
-- Get | find car by id - /cars/{id}
-- Delete | soft delete car by id - /cars{id}
-- Put | update - /cars{id}
+## ✈️ Airplane ✈️ 
+- Post | create a new airplane - /airplanes
+- Post | create a new airplane without air company - /airplanes/without-company
+- Put | update airplane by adding air company - /airplanes/{id}
+- Put | move airplane by id between companies - /airplanes/{id}/move?airCompanyId={id}
+- Get | display all airplanes - /airplanes
+- Delete | soft-delete airplanes by id - /airplanes/{id}
+- Get | find airplane by id - /airplanes/{id}
 
-## User
-- Get | display all users - /users
-- Delete | soft delete user by id - /users/{id}
-- Get | find user information by id - /users/me/{id}
-- Put | update user information by id - /users/me/{id}
-- Put | update user role by id - /users/role/{id}
-- Put | update user role by email - /users/role/{email}
-
-## Rental
-- Get | display all rentals - /rentals
-- Post | save rental to repositort - /rentals
-- Get | find rental by id - /rentals/{id}
-- Get | find rental by car id - /rentals/car/{id}
-- Get | find rental by user id - /rentals/user/{id}
-- Put | update rental by id - /rentals/{id}
-- Delete | soft delete by id - /rentals/{id}
-
-## Payment
-- Get | display all payments - /payments
-- - Post | save payment to repository - /payments
-- Get | find payment by id - /payments/{id}
-- Get | find payment by rental id - /payments/rental/{id}
-- Get | find payment by user id - /payments/user/{id}
-- Post | create success payment session - /payments/create-session
-- Get | get success payment session - /payments/success
-- Get | get cancel payment by id - /payments/cancel/{id}
+## ⏰ Flight ⏰
+- Get | display all flights by air company and status - /flights/{companyName}/status?status={status}
+- Post | create a new flight - /flights
+- Put | update flight status to delayed and delayStartedAt - /flights/delayed/{id}
+- Put | update flight status to active and startedAt - /flights/active/{id}
+- Put | update flight status to completed and endedAt - /flights/completed/{id}
+- Get | display all flights by status active and startedAt time more then 24 hours - /flights/status/active
+- Get | display all flights by status completed and time difference between - /flights/status/completed
+- Get | displat all flights - /flights
+- Get | find flight by id - /flights/{id}
+- Delete | soft-delete flight by id - /flights/{id}
 
