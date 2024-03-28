@@ -1,15 +1,11 @@
-# AirMood
-# 🏎🏎DriveNChill🏎🏎
+# ✈️✈️AirMood✈️✈️
 
 # Project Description:
-- 🫡Welcome to the DriveNChill project!🫡
-- 😉This is a web application that provides various features, including authentication, registration, and CRUD (Create, Read, Update, Delete) operations😉
-- The project is built using the Hibernate and Spring frameworks, specifically Spring Boot, which provide powerful tools for interacting with databases and developing robust web applications.
-- Authentication is implemented using JWT (JSON Web Tokens) for secure and efficient user access.
-- Additionally, the project is integrated with Stripe, allowing seamless payment processing for car rentals.
-- Telegram notifications are also implemented to keep users and administrators informed about important events and updates.
-- The usage of Liquibase ensures efficient database management, while Docker simplifies deployment and containerization.
-- With DriveNChill, users can enjoy a simplified and user-friendly experience while managing car-rental data and operations.
+- 🫡Welcome to the AirMood project!🫡
+- 😉This is a web application that provides various features and CRUD (Create, Read, Update, Delete) operations😉
+- The project is built using the Hibernate and Spring frameworks, specifically Spring Boot, which provide powerful tools for interacting with databases and developing robust web
+- Also project is built using liquibase and docker.
+- With the AirMood, users can enjoy a simplified and 😉user-friendly😉 experience while managing air-companies, airplanes and flights data and operations
 
 ## Setup
 
@@ -20,11 +16,11 @@ To set up the project, follow these steps:
 Make sure you have the following software installed on your system:
 
 - Java Development Kit (JDK) 17 or higher
+- Spring Boot 2.2 or higher
 - Apache Maven
 - Apache Tomcat vesion 9 or higher
-- DataBase: PostgresSQL
+- DataBase: MySQL
 - docker
-- liquibase
 
 ### Installation
 - First of all, you should made your fork
@@ -32,63 +28,48 @@ Make sure you have the following software installed on your system:
 - past link, which you clone later
 
 ### Replace Placeholders:
-To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in .env and application.properties
-- Open package resources and open file env and application.properties in your project.
+To connect to your DB, you should replace PlaceHolders in .env
+- Open package resources and open file env in your project.
 - Locate the placeholders that need to be replaced.
 - These placeholders might include values such as
-- spring.datasource.username=$POSTGRES_USER -> replace with your Postgres
-- spring.datasource.password=$POSTGRES_PASSWORD -> replace with your password Postgres
-- stripe.secretKey=your_stripe_secret_key -> replace your stripe secret key
-- telegram.botToken=your_bot_token -> replace with your telegram bot token
-- telegram.chatId=your_chat_id -> replace with your telegram chat id
-
-  
-## And in .env file
-- POSTGRES_USER=postgres
-- POSTGRES_PASSWORD=123456 // change to your password
-- POSTGRES_DATABASE=blog // change to your db
-- POSTGRES_LOCAL_PORT=5434 // chane to your port
-- POSTGRES_DOCKER_PORT=5432 // change to your docker port
-- SPRING_LOCAL_PORT=8088 // change to your local port
-- SPRING_DOCKER_PORT=8080 // change to your docker port
-- DEBUG_PORT=5005 // change to your port
+- MYSQL_USER= YOUR_USERNAME -> replace with your MySQL_DB
+- MYSQL_PASSWORD=YOUR_PASSWORD -> replace with your password to your MySQL_DB
+- MYSQL_LOCAL_PORT=YOUR_LOCAL_PORT -> replace with your local port
+- MYSQL_DOCKER_PORT=YOUR_DOCKER_PORT -> replace with your docker port
+- SPRING_LOCAL_PORT=YOUR_SPRING_LOCAL_PORT -> replace with your spring local port
+- SPRING_DOCKER_PORT=YOUR_DOCKER_PORT -> replace with your docker port
+- DEBUG_PORT=5006
 
 # Features 🤌:
-## User  🤵‍♂️
-- Registration like a user
-- Authentication like a user
-- Create/update/remove a user
-- Display all users
-- Update user role by email
-- Update user role by id
-- Find user by id
 
-## Car 🏎
-- Create/update/remove a car
-- Find car by id
-- Display all available cars
+## 🏢 Air Company  🏢
+- Create a new air company
+- Display all air companies
+- Find air company by id
+- Soft-Delete air company by id
+- Update air company by id
 
-## Payment 💵
-- Create/update/remove a payment
-- Display all payments
-- Find payment by id
-- Find payment by rental id
-- Find payment by user id
-- Create payment session
-- - Check successful payment
-- Handle canceled payment
+## ✈️ Airplane ✈️
+- Create a new airplane
+- Create a new airplane without adding air company
+- Update airplane by adding air company
+- Move airplane between companies
+- Display all airplanes
+- Find airplane by id
+- Soft-Delete airplane by id
 
-## Rental 💵
-- Display all rentals
-- Find rental by id
-- Find rental by car id
-- Find rental by user id
-- Return rental
-- Create/update/remove a rental
-
-## Role 🙎‍♂️
-- Create/update/remove a role
-- Get role by roleName
+## ⏰ Flight ⏰
+- Create a new flight
+- Display all flights by air company and status
+- Update flight status to delayed and delayStartedAt
+- Update flight status to active and startedAt
+- Update flight status to completed and endedAt
+- Display all flights by status active and startedAt time more then 24 hours
+- Display all flights by status completed and time difference between
+started and ended time is bigger than the estimated flight time.
+- Display all flights
+- Find flight by id
+- Soft-Delete flight by id
 
 # Controllers 🕹
 
