@@ -40,11 +40,15 @@ To connect to your DB, you should replace PlaceHolders in .env
 - SPRING_DOCKER_PORT=YOUR_DOCKER_PORT -> replace with your docker port
 - DEBUG_PORT=5006
 
+  
+
 ### Docker:
 - First of all, open your terminal and write command mvn clean package
 - Then in terminal write docker-compose build
 - After that write in terminal docker-compose up
 - And project will start
+
+  
 
 # Features 🤌:
 
@@ -76,6 +80,8 @@ started and ended time is bigger than the estimated flight time.
 - Display all flights
 - Find flight by id
 - Soft-Delete flight by id
+
+  
 
 # Controllers 🕹
 
